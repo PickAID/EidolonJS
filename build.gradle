@@ -128,6 +128,21 @@ repositories {
         name "KosmX's maven"
         url 'https://maven.kosmx.dev/'
     }
+    maven {
+        // location of the maven that hosts JEI files before January 2023
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
     flatDir { dirs "libraries/${config.mc_version}/all" }
     flatDir { dirs "libraries/${config.mc_version}/classpathOnly" }
     flatDir { dirs "libraries/${config.mc_version}/runtimeOnly" }
@@ -158,12 +173,14 @@ dependencies {
     if (hasConfig("jei_version") && !config.jei_version.isEmpty()) {
         modCompileOnly("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
         modCompileOnly("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
+        modImplementation("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
+//        forgeRuntimeLibrary("mezz.jei:jei-${config.mc_version}-lib:${config.jei_version}")
         modRuntimeOnly("mezz.jei:jei-${config.mc_version}-forge:${config.jei_version}")
     }
 
     if (hasConfig("geckolib_version") && !config.geckolib_version.isEmpty()) {
         modImplementation("software.bernie.geckolib:geckolib-neoforge-${config.mc_version}:${config.geckolib_version}")
-        modImplementation("com.eliotlash.mclib:mclib:20")
+        forgeRuntimeLibrary("com.eliotlash.mclib:mclib:20")
     }
 
     if (hasConfig("curios_version") && !config.curios_version.isEmpty()) {

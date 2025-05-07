@@ -18,11 +18,11 @@ import java.util.List;
  * @author skyraah
  */
 public interface CrucibleSchema {
-    RecipeKey<OutputItem> OUTPUT = ItemComponents.OUTPUT_ID_WITH_COUNT.key("result");
+    RecipeKey<OutputItem[]> OUTPUT = ItemComponents.OUTPUT_ARRAY.key("result");
 //    RecipeKey<List<CrucibleRecipe.Step>> STEPS = StepsComponent.STEP.key("steps");
 
     RecipeComponentBuilder STEP_BUILDER = new RecipeComponentBuilder(2)
-            .add(NumberComponent.INT.key("stirs").optional(1))
+            .add(NumberComponent.INT.key("stirs").defaultOptional())
             .add(ItemComponents.INPUT_ARRAY.key("items"));
     RecipeKey<RecipeComponentBuilderMap[]> STEPS = STEP_BUILDER.inputRole().asArray().key("steps");
     RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, STEPS);
