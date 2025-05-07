@@ -1,1 +1,1 @@
-com.example.exampleaddon.kubejs.ExampleKubeJSPlugin
+com.pickaid.eidolonjs.kubejs.EidolonKubeJSPlugin

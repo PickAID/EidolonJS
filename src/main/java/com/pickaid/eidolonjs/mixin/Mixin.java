@@ -1,4 +1,4 @@
-package com.example.exampleaddon.mixin;
+package com.pickaid.eidolonjs.mixin;
 
 public class Mixin {
     //Mixins here

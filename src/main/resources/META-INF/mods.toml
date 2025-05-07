@@ -6,9 +6,9 @@ license = "All rights reserved" # https://choosealicense.com/
 # issueTrackerURL="https://github.com/invalid/pleasechangeme/issues"
 
 [[mods]]
-modId = "exampleaddon"
+modId = "eidolonjs"
 version = "${version}"
-displayName = "Example Addon"
+displayName = "Eidolon Kubejs"
 logoFile="icon.png"
 # credits="Thanks to FooterMan for the KubeJS Addon Template!"
 # authors="YourNameHere"
