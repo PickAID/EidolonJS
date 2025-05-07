@@ -169,6 +169,7 @@ dependencies {
 
     modImplementation ("curse.maven:eidolon-repraised-870250:5877358")
     modRuntimeOnly ("curse.maven:probejs-585406:5227399")
+    modRuntimeOnly ("curse.maven:jei-238222:6075247")
 
     if (hasConfig("jei_version") && !config.jei_version.isEmpty()) {
         modCompileOnly("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
