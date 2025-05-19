@@ -1,19 +1,20 @@
 package com.pickaid.eidolonjs.kubejs;
 
 import com.pickaid.eidolonjs.EidolonJS;
+import com.pickaid.eidolonjs.recipes.builder.StepBuilderJS;
 import com.pickaid.eidolonjs.recipes.schema.CrucibleSchema;
+import com.pickaid.eidolonjs.recipes.schema.ForagingSchema;
+import com.pickaid.eidolonjs.recipes.schema.WorktableSchema;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeComponentFactoryRegistryEvent;
 import dev.latvian.mods.kubejs.recipe.schema.RegisterRecipeSchemasEvent;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
+import elucent.eidolon.Eidolon;
 
 /**
  * @author skyraah
  */
 public class EidolonKubeJSPlugin extends KubeJSPlugin {
-    /* Basic example of a KubeJS Plugin.
-       To register your own plugins, add this class and package name to "kubejs.plugins.txt" in your Resources directory.
-    */
 
     @Override
     public void init() {
@@ -25,19 +26,22 @@ public class EidolonKubeJSPlugin extends KubeJSPlugin {
 
     @Override
     public void registerBindings(BindingsEvent event) {
-        event.add("CrucibleStepBuilder", CrucibleSchema.StepBuilderJS.class);
+        event.add("StepBuilderJS", StepBuilderJS.class);
+        event.add("CrucibleRecipeJS", CrucibleSchema.CrucibleRecipeJS.class);
     }
 
     @Override
     public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
-        var nameSpace = event.namespace("eidolon");
-        nameSpace.register("crucible", CrucibleSchema.SCHEMA);
+        var nameSpace = event.namespace(Eidolon.MODID);
+        nameSpace
+                .register("crucible", CrucibleSchema.SCHEMA)
+                .register("worktable", WorktableSchema.SCHEMA)
+                .register("athame_foraging", ForagingSchema.SCHEMA);
     }
 
     @Override
     public void registerRecipeComponents(RecipeComponentFactoryRegistryEvent event) {
-//        event.register("steps", CrucibleSchema.STEP_BUILDER);
-        event.register("steps", CrucibleSchema.STEP_CALLBACK_COMPONENT);
+        event.register("steps", CrucibleSchema.STEPS.component);
     }
 }
 
